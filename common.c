@@ -285,7 +285,10 @@ fetch_reopen(int sd)
 	if ((conn = calloc(1, sizeof(*conn))) == NULL)
 		return (NULL);
 	fcntl(sd, F_SETFD, FD_CLOEXEC);
-	setsockopt(sd, SOL_SOCKET, SO_NOSIGPIPE, &opt, sizeof opt);
+    /* FIXME:
+       OpenBSD does not have the socket option SO_SIGNOPIPE.
+       setsockopt(sd, SOL_SOCKET, SO_NOSIGPIPE, &opt, sizeof opt);
+    */
 	conn->sd = sd;
 	++conn->ref;
 	return (conn);

@@ -39,6 +39,23 @@
 #define URL_USERLEN 256
 #define URL_PWDLEN 256
 
+#ifndef IPPORT_MAX
+#define IPPORT_MAX 65535u
+#endif
+
+#ifndef __printflike
+#define __printflike(fmtarg, firstvararg) \
+	    __attribute__((__format__ (__printf__, fmtarg, firstvararg)))
+#endif
+
+#ifndef __DECONST
+#define __DECONST(type, var) ((type)(__uintptr_t)(const void *)(var))
+#endif
+
+#ifndef _PATH_LOCALBASE
+#define _PATH_LOCALBASE "/usr/local/"
+#endif
+
 struct url {
 	char		 scheme[URL_SCHEMELEN+1];
 	char		 user[URL_USERLEN+1];
