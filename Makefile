@@ -1,28 +1,15 @@
 # $FreeBSD$
 
-.include <src.opts.mk>
-
 PACKAGE=	fetch
 
 LIB=		fetch
-CFLAGS+=	-I.
+LINADD+=	ssl crypto
+CFLAGS+=	-I. -DINET6 -DWITH_SSL
 SRCS=		fetch.c common.c ftp.c http.c file.c \
 		ftperr.h httperr.h
 INCS=		fetch.h
 MAN=		fetch.3
 CLEANFILES=	ftperr.h httperr.h
-
-.if ${MK_INET6_SUPPORT} != "no"
-CFLAGS+=	-DINET6
-.endif
-
-.if ${MK_OPENSSL} != "no"
-CFLAGS+=	-DWITH_SSL
-LIBADD+=	ssl crypto
-.else
-LIBADD+=	md
-.endif
-
 CFLAGS+=	-DFTP_COMBINE_CWDS
 
 SHLIB_MAJOR=    6
