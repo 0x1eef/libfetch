@@ -5,7 +5,7 @@ PACKAGE=	fetch
 LIB=		fetch
 LINADD+=	ssl crypto
 CFLAGS+=	-I. -DINET6 -DWITH_SSL
-SRCS=		fetch.c common.c ftp.c http.c file.c \
+SRCS=		fetch.c common.c ftp.c http.c file.c strnstr.c strchrnul.c \
 		ftperr.h httperr.h
 INCS=		fetch.h
 MAN=		fetch.3
