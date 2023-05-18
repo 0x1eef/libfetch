@@ -22,8 +22,8 @@ Similarly, functions that aren't available on OpenBSD (ie `strnstr`,
 
 ## Sources
 
-* [GitHub](https://github.com/0x1eef/libfetch)
-* [GitLab](https://gitlab.com/0x1eef/libfetch)
+* [GitHub (source code)](https://github.com/0x1eef/libfetch)
+* [GitLab (source code)](https://gitlab.com/0x1eef/libfetch)
 
 ## License
 
