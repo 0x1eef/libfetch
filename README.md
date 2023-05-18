@@ -10,8 +10,8 @@ socket option does not exist on
 and the line that sets that socket option has been removed. Numerous
 calls to `__FBSDID` have been removed, and `#define` directives
 have been implemented where they were found to be absent but required.
-Similarly, functions that aren't available on OpenBSD (ie `strnstr`, 
-`strchrnul`) but are used by libfetch have also been added.
+Similarly, functions that aren't available on OpenBSD (ie `strnstr`,
+`strchrnul`) but are used by libfetch have also been implemented.
 
 ## Build
 
