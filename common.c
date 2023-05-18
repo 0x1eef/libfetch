@@ -58,7 +58,7 @@
 
 #include "fetch.h"
 #include "common.h"
-
+#include "freebsd/string.h"
 
 /*** Local data **************************************************************/
 
@@ -138,7 +138,6 @@ static struct fetcherr socks5_errlist[] = {
 
 /* End-of-Line */
 static const char ENDL[2] = "\r\n";
-
 
 /*** Error-reporting functions ***********************************************/
 
