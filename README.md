@@ -17,8 +17,10 @@ Similarly, functions that aren't available on OpenBSD (ie `strnstr`,
 
 ## Build
 
+    # Clone
     git clone https://github.com/0x1eef/libfetch
     cd libfetch
+    
     # Build static library (./build/usr/local/lib/libfetch.a)
     make libfetch.a
     # Build shared library (./build/usr/local/lib/libfetch.so)
