@@ -1,0 +1,4 @@
+obj/
+build/
+include/ftperr.h
+include/httperr.h
