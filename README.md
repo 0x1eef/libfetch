@@ -4,7 +4,7 @@ The goal of this repository is to port libfetch from
 [FreeBSD](https://freebsd.org)
 to
 [OpenBSD](https://openbsd.org).
-At the time of writing the library can be built as a static,
+At the time of writing the library can be built as a static library,
 and as a shared library.
 
 The `SO_NOSIGPIPE` socket option does not exist on
