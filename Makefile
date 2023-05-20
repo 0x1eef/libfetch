@@ -32,7 +32,7 @@ clean:
 
 ##
 # Private targets
-objs: ftperr.h httperr.h
+objs: clean ftperr.h httperr.h
 	@for src in $(SRCS); do \
 		obj=$$(echo "$${src}" | sed 's/\.c$$/\.o/'); \
 		$(CC) $(CFLAGS) -c "$${src}" -o "${OBJS_DIR}/$${obj}" ; \
