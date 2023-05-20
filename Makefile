@@ -1,69 +1,56 @@
 # $FreeBSD$
 
 PACKAGE=	fetch
-
 LIB=		fetch
-LINADD+=	ssl crypto
-CFLAGS+=	-I. -DINET6 -DWITH_SSL
-SRCS=		fetch.c common.c ftp.c http.c file.c strnstr.c strchrnul.c \
-		ftperr.h httperr.h
-INCS=		fetch.h
-MAN=		fetch.3
-CLEANFILES=	ftperr.h httperr.h
-CFLAGS+=	-DFTP_COMBINE_CWDS
+SRCS=	fetch.c common.c ftp.c file.c http.c strnstr.c strchrnul.c
 
-SHLIB_MAJOR=    6
+INCLUDES_DIR=	${.CURDIR}/includes
+OBJS_DIR=	${.CURDIR}/objs
+BUILD_DIR=	$(.CURDIR)/build
+LIB_DIR=	$(BUILD_DIR)/usr/local/lib
+
+CC=	cc
+CFLAGS=	-I${INCLUDES_DIR} -DINET6 -DWITH_SSL
+ARFLAGS= rcs
+
+##
+# Public targets
+libfetch.a: objs
+	$(AR) rcs ${LIB_DIR}/${.TARGET} objs/*.o
+
+clean:
+	rm -rf \
+	$(INCLUDES_DIR)/httperr.h \
+	$(INCLUDES_DIR)/ftperr.h \
+	$(OBJS_DIR)/*.o \
+	$(LIB_DIR)/*.a \
+
+##
+# Private targets
+objs: ftperr.h httperr.h
+	@for src in $(SRCS); do \
+		obj=$$(echo "$${src}" | sed 's/\.c$$/\.o/'); \
+		$(CC) $(CFLAGS) -c "$${src}" -o "${OBJS_DIR}/$${obj}" ; \
+	done
 
 ftperr.h: ftp.errors ${.CURDIR}/Makefile
-	@echo "static struct fetcherr ftp_errlist[] = {" > ${.TARGET}
+	@echo "static struct fetcherr ftp_errlist[] = {" > ${INCLUDES_DIR}/${.TARGET}
 	@cat ${.CURDIR}/ftp.errors \
 	  | grep -v ^# \
 	  | sort \
 	  | while read NUM CAT STRING; do \
 	    echo "    { $${NUM}, FETCH_$${CAT}, \"$${STRING}\" },"; \
-	  done >> ${.TARGET}
-	@echo "    { -1, FETCH_UNKNOWN, \"Unknown FTP error\" }" >> ${.TARGET}
-	@echo "};" >> ${.TARGET}
+	  done >> ${INCLUDES_DIR}/${.TARGET}
+	@echo "    { -1, FETCH_UNKNOWN, \"Unknown FTP error\" }" >> ${INCLUDES_DIR}/${.TARGET}
+	@echo "};" >> ${INCLUDES_DIR}/${.TARGET}
 
 httperr.h: http.errors ${.CURDIR}/Makefile
-	@echo "static struct fetcherr http_errlist[] = {" > ${.TARGET}
+	@echo "static struct fetcherr http_errlist[] = {" > ${INCLUDES_DIR}/${.TARGET}
 	@cat ${.CURDIR}/http.errors \
 	  | grep -v ^# \
 	  | sort \
 	  | while read NUM CAT STRING; do \
 	    echo "    { $${NUM}, FETCH_$${CAT}, \"$${STRING}\" },"; \
-	  done >> ${.TARGET}
-	@echo "    { -1, FETCH_UNKNOWN, \"Unknown HTTP error\" }" >> ${.TARGET}
-	@echo "};" >> ${.TARGET}
-
-MLINKS+= fetch.3 fetchFreeURL.3
-MLINKS+= fetch.3 fetchGet.3
-MLINKS+= fetch.3 fetchGetFTP.3
-MLINKS+= fetch.3 fetchGetFile.3
-MLINKS+= fetch.3 fetchGetHTTP.3
-MLINKS+= fetch.3 fetchGetURL.3
-MLINKS+= fetch.3 fetchList.3
-MLINKS+= fetch.3 fetchListFTP.3
-MLINKS+= fetch.3 fetchListFile.3
-MLINKS+= fetch.3 fetchListHTTP.3
-MLINKS+= fetch.3 fetchListURL.3
-MLINKS+= fetch.3 fetchMakeURL.3
-MLINKS+= fetch.3 fetchParseURL.3
-MLINKS+= fetch.3 fetchPut.3
-MLINKS+= fetch.3 fetchPutFTP.3
-MLINKS+= fetch.3 fetchPutFile.3
-MLINKS+= fetch.3 fetchPutHTTP.3
-MLINKS+= fetch.3 fetchPutURL.3
-MLINKS+= fetch.3 fetchReqHTTP.3
-MLINKS+= fetch.3 fetchStat.3
-MLINKS+= fetch.3 fetchStatFTP.3
-MLINKS+= fetch.3 fetchStatFile.3
-MLINKS+= fetch.3 fetchStatHTTP.3
-MLINKS+= fetch.3 fetchStatURL.3
-MLINKS+= fetch.3 fetchXGet.3
-MLINKS+= fetch.3 fetchXGetFTP.3
-MLINKS+= fetch.3 fetchXGetFile.3
-MLINKS+= fetch.3 fetchXGetHTTP.3
-MLINKS+= fetch.3 fetchXGetURL.3
-
-.include <bsd.lib.mk>
+	  done >> ${INCLUDES_DIR}/${.TARGET}
+	@echo "    { -1, FETCH_UNKNOWN, \"Unknown HTTP error\" }" >> ${INCLUDES_DIR}/${.TARGET}
+	@echo "};" >> ${INCLUDES_DIR}/${.TARGET}

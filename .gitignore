@@ -1,2 +1,4 @@
 objs/
 build/
+includes/ftperr.h
+includes/httperr.h

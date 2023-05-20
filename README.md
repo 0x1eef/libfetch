@@ -17,8 +17,8 @@ Similarly, functions that aren't available on OpenBSD (ie `strnstr`,
 
     git clone https://github.com/0x1eef/libfetch
     cd libfetch
-    make ftperr.h httperr.h
-    make
+    # Build static library
+    make libfetch.a
 
 ## Sources
 
