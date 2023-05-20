@@ -4,8 +4,10 @@ The goal of this repository is to port libfetch from
 [FreeBSD](https://freebsd.org)
 to
 [OpenBSD](https://openbsd.org).
-At the time of writing the library can be built. The `SO_NOSIGPIPE`
-socket option does not exist on
+At the time of writing the library can be built as a static,
+and as a shared library.
+
+The `SO_NOSIGPIPE` socket option does not exist on
 [OpenBSD](https://openbsd.org)
 and the line that sets that socket option has been removed. Numerous
 calls to `__FBSDID` have been removed, and `#define` directives
@@ -19,6 +21,8 @@ Similarly, functions that aren't available on OpenBSD (ie `strnstr`,
     cd libfetch
     # Build static library
     make libfetch.a
+    # Build shared library
+    make libfetch.so
 
 ## Sources
 

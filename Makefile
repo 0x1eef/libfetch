@@ -10,13 +10,16 @@ BUILD_DIR=	$(.CURDIR)/build
 LIB_DIR=	$(BUILD_DIR)/usr/local/lib
 
 CC=	cc
-CFLAGS=	-I${INCLUDES_DIR} -DINET6 -DWITH_SSL
+CFLAGS=	-I${INCLUDES_DIR} -fPIC -DINET6 -DWITH_SSL
 ARFLAGS= rcs
 
 ##
 # Public targets
 libfetch.a: objs
 	$(AR) rcs ${LIB_DIR}/${.TARGET} objs/*.o
+
+libfetch.so: objs
+	$(CC) -shared $(OBJS_DIR)/*.o -o $(LIB_DIR)/libfetch.so
 
 clean:
 	rm -rf \
