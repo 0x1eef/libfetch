@@ -58,7 +58,7 @@
 
 #include "fetch.h"
 #include "common.h"
-#include "freebsd/string.h"
+#include "compat/string.h"
 
 /*** Local data **************************************************************/
 

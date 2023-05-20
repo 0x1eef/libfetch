@@ -39,10 +39,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "freebsd/string.h"
 
 #include "fetch.h"
 #include "common.h"
+#include "compat/string.h"
 
 auth_t	 fetchAuthMethod;
 int	 fetchLastErrCode;
