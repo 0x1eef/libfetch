@@ -2,7 +2,7 @@
 
 PACKAGE=	fetch
 LIB=		fetch
-SRCS=	fetch.c common.c ftp.c file.c http.c strnstr.c strchrnul.c
+SRCS=	src/fetch.c src/common.c src/ftp.c src/file.c src/http.c src/strnstr.c src/strchrnul.c
 
 INCLUDES_DIR=	${.CURDIR}/includes
 OBJS_DIR=	${.CURDIR}/objs
@@ -34,7 +34,7 @@ clean:
 # Private targets
 objs: clean ftperr.h httperr.h
 	@for src in $(SRCS); do \
-		obj=$$(echo "$${src}" | sed 's/\.c$$/\.o/'); \
+		obj=$$(basename $$(echo "$${src}" | sed 's/\.c$$/\.o/')); \
 		$(CC) $(CFLAGS) -c "$${src}" -o "${OBJS_DIR}/$${obj}" ; \
 	done
 
