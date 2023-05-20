@@ -74,9 +74,9 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "fetch.h"
-#include "common.h"
-#include "ftperr.h"
+#include "../include/fetch.h"
+#include "../include/common.h"
+#include "../include/ftperr.h"
 
 #define FTP_ANONYMOUS_USER	"anonymous"
 

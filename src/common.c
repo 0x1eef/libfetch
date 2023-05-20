@@ -56,9 +56,9 @@
 #include <openssl/x509v3.h>
 #endif
 
-#include "fetch.h"
-#include "common.h"
-#include "freebsd/string.h"
+#include "../include/fetch.h"
+#include "../include/common.h"
+#include "../include/compat/string.h"
 
 /*** Local data **************************************************************/
 

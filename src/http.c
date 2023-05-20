@@ -91,9 +91,9 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 
-#include "fetch.h"
-#include "common.h"
-#include "httperr.h"
+#include "../include/fetch.h"
+#include "../include/common.h"
+#include "../include/httperr.h"
 
 /* Maximum number of redirects to follow */
 #define MAX_REDIRECT 20
