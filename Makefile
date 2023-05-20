@@ -19,7 +19,7 @@ libfetch.a: objs
 	$(AR) rcs ${LIB_DIR}/${.TARGET} objs/*.o
 
 libfetch.so: objs
-	$(CC) -shared $(OBJS_DIR)/*.o -o $(LIB_DIR)/libfetch.so
+	$(CC) -shared $(OBJS_DIR)/*.o -lssl -lcrypto -o $(LIB_DIR)/libfetch.so
 
 all: libfetch.a libfetch.so
 
