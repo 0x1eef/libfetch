@@ -21,6 +21,8 @@ libfetch.a: objs
 libfetch.so: objs
 	$(CC) -shared $(OBJS_DIR)/*.o -o $(LIB_DIR)/libfetch.so
 
+all: libfetch.a libfetch.so
+
 clean:
 	rm -rf \
 	$(INCLUDES_DIR)/httperr.h \
