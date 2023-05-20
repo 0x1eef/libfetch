@@ -23,8 +23,10 @@ Similarly, functions that aren't available on OpenBSD (ie `strnstr`,
     
     # Build static library (./build/usr/local/lib/libfetch.a)
     make libfetch.a
+    
     # Build shared library (./build/usr/local/lib/libfetch.so)
     make libfetch.so
+    
     # Build both static and shared libraries
     make all
 
