@@ -8,6 +8,7 @@ INCLUDES_DIR=	${.CURDIR}/includes
 OBJS_DIR=	${.CURDIR}/objs
 BUILD_DIR=	$(.CURDIR)/build
 LIB_DIR=	$(BUILD_DIR)/usr/local/lib
+HEADER_DIR=	$(BUILD_DIR)/usr/local/include
 
 CC=	cc
 CFLAGS=	-I${INCLUDES_DIR} -fPIC -DINET6 -DWITH_SSL
@@ -15,10 +16,10 @@ ARFLAGS= rcs
 
 ##
 # Public targets
-libfetch.a: objs
+libfetch.a: objs headers
 	$(AR) rcs ${LIB_DIR}/${.TARGET} objs/*.o
 
-libfetch.so: objs
+libfetch.so: objs headers
 	$(CC) -shared $(OBJS_DIR)/*.o -lssl -lcrypto -o $(LIB_DIR)/libfetch.so
 
 all: libfetch.a libfetch.so
@@ -29,9 +30,13 @@ clean:
 	$(INCLUDES_DIR)/ftperr.h \
 	$(OBJS_DIR)/*.o \
 	$(LIB_DIR)/*.a \
+	$(HEADER_DIR)/*.h \
 
 ##
 # Private targets
+headers:
+	@cp $(INCLUDES_DIR)/fetch.h $(HEADER_DIR)
+
 objs: clean ftperr.h httperr.h
 	@for src in $(SRCS); do \
 		obj=$$(basename $$(echo "$${src}" | sed 's/\.c$$/\.o/')); \
