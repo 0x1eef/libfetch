@@ -39,7 +39,7 @@ deinstall:
 	@rm -f /usr/local/include/fetch.h
 
 clean:
-	rm -rf \
+	@rm -rf \
 	$(INCLUDES_DIR)/httperr.h \
 	$(INCLUDES_DIR)/ftperr.h \
 	$(OBJS_DIR)/*.o \
