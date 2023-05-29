@@ -30,6 +30,12 @@ Similarly, functions that aren't available on OpenBSD (ie `strnstr`,
     # Build both static and shared libraries
     make all
 
+    # Proceed to install libfetch into /usr/local/
+    make install
+    
+    # Proceed to deinstall libfetch from /usr/local/
+    make deinstall
+    
 ## Sources
 
 * [GitHub (source code)](https://github.com/0x1eef/libfetch)

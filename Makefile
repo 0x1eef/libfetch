@@ -22,7 +22,21 @@ libfetch.a: objs headers
 libfetch.so: objs headers
 	$(CC) -shared $(OBJS_DIR)/*.o -lssl -lcrypto -o $(LIB_DIR)/libfetch.so
 
-all: libfetch.a libfetch.so
+install:
+	@if [ -e "$(LIB_DIR)"/*.so ]; then \
+		install "$(LIB_DIR)"/*.so /usr/local/lib/; \
+	fi
+	@if [ -e "$(LIB_DIR)"/*.a ]; then \
+		install "$(LIB_DIR)"/*.a /usr/local/lib/; \
+	fi
+	@if [ -e "$(HEADER_DIR)"/fetch.h ]; then \
+		install "$(HEADER_DIR)"/fetch.h /usr/local/include/; \
+	fi
+
+deinstall:
+	@rm -f /usr/local/lib/libfetch.so
+	@rm -f /usr/local/lib/libfetch.a
+	@rm -f /usr/local/include/fetch.h
 
 clean:
 	rm -rf \
@@ -31,6 +45,8 @@ clean:
 	$(OBJS_DIR)/*.o \
 	$(LIB_DIR)/*.a \
 	$(HEADER_DIR)/*.h \
+
+all: libfetch.a libfetch.so
 
 ##
 # Private targets
