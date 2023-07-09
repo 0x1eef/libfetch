@@ -40,6 +40,7 @@ Similarly, functions that aren't available on OpenBSD (ie `strnstr`,
 
 * [GitHub (source code)](https://github.com/0x1eef/libfetch)
 * [GitLab (source code)](https://gitlab.com/0x1eef/libfetch)
+* [HardenedBSD (source code)](https://git.hardenedbsd.org/0x1eef/libfetch/)
 
 ## License
 
